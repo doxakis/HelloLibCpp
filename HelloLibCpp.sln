@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.26730.16
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "HelloLibCpp", "HelloLibCpp\HelloLibCpp.vcxproj", "{AF2924E8-1F48-43FE-9BF6-D823C4A64F47}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{AF2924E8-1F48-43FE-9BF6-D823C4A64F47}.Debug|x64.ActiveCfg = Debug|x64
+		{AF2924E8-1F48-43FE-9BF6-D823C4A64F47}.Debug|x64.Build.0 = Debug|x64
+		{AF2924E8-1F48-43FE-9BF6-D823C4A64F47}.Debug|x86.ActiveCfg = Debug|Win32
+		{AF2924E8-1F48-43FE-9BF6-D823C4A64F47}.Debug|x86.Build.0 = Debug|Win32
+		{AF2924E8-1F48-43FE-9BF6-D823C4A64F47}.Release|x64.ActiveCfg = Release|x64
+		{AF2924E8-1F48-43FE-9BF6-D823C4A64F47}.Release|x64.Build.0 = Release|x64
+		{AF2924E8-1F48-43FE-9BF6-D823C4A64F47}.Release|x86.ActiveCfg = Release|Win32
+		{AF2924E8-1F48-43FE-9BF6-D823C4A64F47}.Release|x86.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {6B16C010-1664-4864-9363-59AB755DC3F5}
+	EndGlobalSection
+EndGlobal
