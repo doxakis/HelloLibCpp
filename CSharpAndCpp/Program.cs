@@ -14,17 +14,17 @@ namespace CSharpAndCpp
 		private const string DllFilePath = @"HelloLibCpp.dll";
 
 		[DllImport(DllFilePath, CallingConvention = CallingConvention.Cdecl)]
-		private extern static int parseFileCpp(byte[] arr, int length);
+		private extern static int parseFileCpp(int[] arr, int length);
 
 		[DllImport(DllFilePath, CallingConvention = CallingConvention.Cdecl)]
-		private extern static int parseFileC(byte[] arr, int length);
+		private extern static int parseFileC(int[] arr, int length);
 
-		public static int ParseFileCpp(byte[] arr)
+		public static int ParseFileCpp(int[] arr)
 		{
 			return parseFileCpp(arr, arr.Length);
 		}
 
-		public static int ParseFileC(byte[] arr)
+		public static int ParseFileC(int[] arr)
 		{
 			return parseFileC(arr, arr.Length);
 		}
@@ -34,19 +34,21 @@ namespace CSharpAndCpp
 	{
 		static void Main(string[] args)
 		{
-			byte[] arr;
+			int[] arr;
 			using (Mat src = new Mat("form9.jpg", ImreadModes.GrayScale))
 			{
-				arr = new byte[src.Width * src.Height];
+				arr = new int[src.Width * src.Height];
 
 				using (MatOfByte mat = new MatOfByte(src))
 				{
 					MatIndexer<byte> indexer = mat.GetIndexer();
+					int i = 0;
 					for (int y = 0; y < src.Height; y++)
 					{
 						for (int x = 0; x < src.Width; x++)
 						{
-							arr[y * src.Width + x] = indexer[y, x];
+							arr[i] = indexer[y, x];
+							i++;
 						}
 					}
 				}

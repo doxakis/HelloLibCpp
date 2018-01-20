@@ -11,7 +11,7 @@ using namespace std;
 class HelloFunctions
 {
 public:
-	static int parseFile(uint8_t* arr, int length)
+	static int parseFile(int* arr, int length)
 	{
 		int sum = 0;
 		for (int i = 0; i < length; i++)
@@ -28,12 +28,15 @@ public:
 // Define C functions for the C++ class - as ctypes can only talk to C...
 extern "C"
 {
-	__declspec(dllexport) int __cdecl parseFileCpp(uint8_t* arr, int length)
+	__declspec(dllexport) int __cdecl parseFileCpp(int* arr, int length)
 	{
+		//cout << "calling: parseFileCpp" << endl;
+		//cout << "arr: " << arr << endl;
+		//cout << "len: " << length << endl;
 		return HelloFunctions::parseFile(arr, length);
 	}
 
-	__declspec(dllexport) int __cdecl parseFileC(uint8_t* arr, int length)
+	__declspec(dllexport) int __cdecl parseFileC(int* arr, int length)
 	{
 		int sum = 0;
 		for (int i = 0; i < length; i++)
