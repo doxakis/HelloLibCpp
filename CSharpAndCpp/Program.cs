@@ -5,6 +5,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace CSharpAndCpp
@@ -14,19 +15,19 @@ namespace CSharpAndCpp
 		private const string DllFilePath = @"HelloLibCpp.dll";
 
 		[DllImport(DllFilePath, CallingConvention = CallingConvention.Cdecl)]
-		private extern static int parseFileCpp(int[] arr, int length);
+		private extern static int parseFileCpp(int[] arr, int length, int pos);
 
 		[DllImport(DllFilePath, CallingConvention = CallingConvention.Cdecl)]
-		private extern static int parseFileC(int[] arr, int length);
-
-		public static int ParseFileCpp(int[] arr)
+		private extern static int parseFileC(int[] arr, int length, int pos);
+		
+		public static int ParseFileCpp(int[] arr, int pos)
 		{
-			return parseFileCpp(arr, arr.Length);
+			return parseFileCpp(arr, arr.Length, pos);
 		}
 
-		public static int ParseFileC(int[] arr)
+		public static int ParseFileC(int[] arr, int pos)
 		{
-			return parseFileC(arr, arr.Length);
+			return parseFileC(arr, arr.Length, pos);
 		}
 	}
 
@@ -59,11 +60,13 @@ namespace CSharpAndCpp
 			// Testing multi-thread.
 			Parallel.For(0, n, new ParallelOptions { MaxDegreeOfParallelism = Environment.ProcessorCount }, i =>
 			{
-				var resultCpp = NativeTest.ParseFileCpp(arr);
+				var resultCpp = NativeTest.ParseFileCpp(arr, i);
 				Console.WriteLine("Result from cpp: " + resultCpp);
 
-				var resultC = NativeTest.ParseFileCpp(arr);
+				var resultC = NativeTest.ParseFileCpp(arr, i);
 				Console.WriteLine("Result from c: " + resultC);
+
+				Thread.Sleep(100);
 			});
 			
 			Console.WriteLine("Press any key to continue...");
