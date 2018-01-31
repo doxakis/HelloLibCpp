@@ -34,6 +34,8 @@ namespace CSharpAndCpp
 	{
 		static void Main(string[] args)
 		{
+			int n = 10000000;
+
 			int[] arr;
 			using (Mat src = new Mat("form9.jpg", ImreadModes.GrayScale))
 			{
@@ -53,14 +55,16 @@ namespace CSharpAndCpp
 					}
 				}
 			}
-			
-			Console.WriteLine("Calling cpp");
-			var resultCpp = NativeTest.ParseFileCpp(arr);
-			Console.WriteLine("Result from cpp: " + resultCpp);
-			
-			Console.WriteLine("Calling c");
-			var resultC = NativeTest.ParseFileCpp(arr);
-			Console.WriteLine("Result from c: " + resultC);
+
+			// Testing multi-thread.
+			Parallel.For(0, n, new ParallelOptions { MaxDegreeOfParallelism = Environment.ProcessorCount }, i =>
+			{
+				var resultCpp = NativeTest.ParseFileCpp(arr);
+				Console.WriteLine("Result from cpp: " + resultCpp);
+
+				var resultC = NativeTest.ParseFileCpp(arr);
+				Console.WriteLine("Result from c: " + resultC);
+			});
 			
 			Console.WriteLine("Press any key to continue...");
 			Console.ReadLine();

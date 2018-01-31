@@ -16,11 +16,21 @@ public:
 		int sum = 0;
 		for (int i = 0; i < length; i++)
 		{
-			if (arr[i] == 32)
+			if (arr[i] == 0)
 			{
 				sum += arr[i];
 			}
 		}
+
+		int* arr2;
+		arr2 = new int[length];
+		for (int i = 0; i < length; i++)
+		{
+			arr2[i] = i;
+			sum += 1;
+		}
+		delete arr2;
+
 		return sum;
 	}
 };
@@ -41,11 +51,20 @@ extern "C"
 		int sum = 0;
 		for (int i = 0; i < length; i++)
 		{
-			if (arr[i] == 32)
+			if (arr[i] == 0)
 			{
 				sum += arr[i];
 			}
 		}
+
+		int* arr2 = (int*)malloc(length * sizeof(int));
+		for (int i = 0; i < length; i++)
+		{
+			*(arr2 + i) = i;
+			sum += 1;
+		}
+		free(arr2);
+
 		return sum;
 	}
 }
